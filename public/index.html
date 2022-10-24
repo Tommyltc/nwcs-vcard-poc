@@ -377,7 +377,7 @@
         mode: 'cors',
     };
 
-    fetch(url.href+name.toLowerCase()+".json", requestOptions)
+    fetch(name.toLowerCase()+".json", requestOptions)
         .then(response => response.text())
         .then(text => JSON.parse(text))
         .then(result => {
