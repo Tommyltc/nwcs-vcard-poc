@@ -377,7 +377,7 @@
         mode: 'cors',
     };
 
-    fetch("https://vcard.tommyltc.com/"+name.toLowerCase()+".json", requestOptions)
+    fetch(url.origin+name.toLowerCase()+".json", requestOptions)
         .then(response => response.text())
         .then(text => JSON.parse(text))
         .then(result => {
