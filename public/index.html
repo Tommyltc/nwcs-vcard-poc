@@ -330,25 +330,15 @@
                 margin-block-end: 0.5em;
             }
         }
-    @keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
-    }
-    @keyframes fadeOut {
-        0% { opacity: 1; }
-        100% { opacity: 0; }
-    }
     .card[hidden=true] {
         display: none;
-        animation: fadeOut 0.8s;
     }
     .card[hidden=false] {
         display: grid;
-        animation: fadeOut 0.8s;
     }
 
 </style>
-<div class="card front show" onclick="cardClick()" hidden="false">
+<div class="card front show" onclick="cardClick(1)">
     <div class="blue"></div>
     <div class="yellow"></div>
     <div class="pink"></div>
@@ -359,7 +349,7 @@
         <p><span id="f-title"></span><br/><span id="f-team"></span></p>
     </div>
 </div>
-<div class="card back" onclick="cardClick()" hidden="true">
+<div class="card back" onclick="cardClick(0)">
     <div class="yellow"></div>
     <div class="top dots"></div>
     <div class="personal-info">
@@ -376,6 +366,21 @@
 </div>
 
 <script type="text/javascript">
+    function cardClick(cardState){
+        switch (cardState){
+            case 0:
+                document.getElementsByClassName("card front")[0].setAttribute("hidden",false)
+                document.getElementsByClassName("card back")[0].setAttribute("hidden",true)
+                cardState = 1;
+                break;
+            case 1:
+                document.getElementsByClassName("card front")[0].setAttribute("hidden",true)
+                document.getElementsByClassName("card back")[0].setAttribute("hidden",false)
+                cardState = 0;
+                break;
+        }
+    }
+    cardClick(0);
     var url = new URL(window.location.href);
     var name = url.searchParams.get("name");
 
@@ -433,21 +438,6 @@
             });
         })
         .catch(error => console.log('error', error));
-var cardState = 0;
-function cardClick(){
-    switch (cardState){
-        case 0:
-            document.getElementsByClassName("card front")[0].setAttribute("hidden",false)
-            document.getElementsByClassName("card back")[0].setAttribute("hidden",true)
-            cardState = 1;
-            break;
-        case 1:
-            document.getElementsByClassName("card front")[0].setAttribute("hidden",true)
-            document.getElementsByClassName("card back")[0].setAttribute("hidden",false)
-            cardState = 0;
-            break;
-    }
-}
 </script>
 </body>
 </html>
