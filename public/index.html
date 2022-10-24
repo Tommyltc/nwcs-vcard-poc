@@ -338,17 +338,17 @@
         0% { opacity: 1; }
         100% { opacity: 0; }
     }
-    .card[hidden] {
+    .card[hidden=true] {
         display: none;
         animation: fadeOut 0.8s;
     }
-    .card {
+    .card[hidden=false] {
         display: grid;
         animation: fadeOut 0.8s;
     }
 
 </style>
-<div class="card front show" onclick="cardClick()">
+<div class="card front show" onclick="cardClick()" hidden="false">
     <div class="blue"></div>
     <div class="yellow"></div>
     <div class="pink"></div>
@@ -437,13 +437,13 @@ var cardState = 0;
 function cardClick(){
     switch (cardState){
         case 0:
-            document.getElementsByClassName("card front")[0].removeAttribute("hidden")
+            document.getElementsByClassName("card front")[0].setAttribute("hidden",false)
             document.getElementsByClassName("card back")[0].setAttribute("hidden",true)
             cardState = 1;
             break;
         case 1:
             document.getElementsByClassName("card front")[0].setAttribute("hidden",true)
-            document.getElementsByClassName("card back")[0].removeAttribute("hidden")
+            document.getElementsByClassName("card back")[0].setAttribute("hidden",false)
             cardState = 0;
             break;
     }
