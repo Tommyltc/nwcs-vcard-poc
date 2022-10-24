@@ -330,9 +330,25 @@
                 margin-block-end: 0.5em;
             }
         }
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+    .card[hidden] {
+        display: none;
+        animation: fadeOut 0.8s;
+    }
+    .card {
+        display: grid;
+        animation: fadeOut 0.8s;
+    }
 
 </style>
-<div class="card front">
+<div class="card front show" onclick="cardClick()">
     <div class="blue"></div>
     <div class="yellow"></div>
     <div class="pink"></div>
@@ -343,7 +359,7 @@
         <p><span id="f-title"></span><br/><span id="f-team"></span></p>
     </div>
 </div>
-<div class="card back">
+<div class="card back" onclick="cardClick()" hidden="true">
     <div class="yellow"></div>
     <div class="top dots"></div>
     <div class="personal-info">
@@ -417,8 +433,21 @@
             });
         })
         .catch(error => console.log('error', error));
-
-
+var cardState = 0;
+function cardClick(){
+    switch (cardState){
+        case 0:
+            document.getElementsByClassName("card front")[0].removeAttribute("hidden")
+            document.getElementsByClassName("card back")[0].setAttribute("hidden",true)
+            cardState = 1;
+            break;
+        case 1:
+            document.getElementsByClassName("card front")[0].setAttribute("hidden",true)
+            document.getElementsByClassName("card back")[0].removeAttribute("hidden")
+            cardState = 0;
+            break;
+    }
+}
 </script>
 </body>
 </html>
