@@ -43,7 +43,7 @@
             grid-row: 1 / span 3;
             grid-column: 1 / span 11;
             position: relative;
-            z-index: 2;
+            /*z-index: 2;*/
         }
 
         .front .dots {
@@ -52,7 +52,7 @@
             background-position: 0 0, 3px 3px;
             grid-column: 1 / span 12;
             grid-row: 3 / span 2;
-            z-index: 1;
+            /*z-index: 1;*/
         }
 
         .front .personal-intro {
@@ -64,7 +64,7 @@
             grid-row: 2 / span 2;
             justify-content: center;
             text-align: center;
-            z-index: 3;
+            z-index: 1;
         }
 
         .front .personal-intro p {
@@ -135,7 +135,7 @@
             background-position: 0 0, 3px 3px;
             grid-column: 1 / span 8;
             grid-row: 11 / span 2;
-            z-index: 2;
+            /*z-index: 2;*/
         }
 
         /*.back .pink {*/
@@ -155,7 +155,7 @@
         .logo {
             height: 5vh;
             position: absolute;
-            z-index: 100;
+            /*z-index: 100;*/
             margin-left: 10px;
             margin-top: 5px;
         }
@@ -214,7 +214,7 @@
 
         /* Style the front side (fallback if image is missing) */
         .flip-card-front {
-            color: black;
+            z-index: -1;
         }
 
         /* Style the back side */
@@ -262,7 +262,7 @@
             grid-row: 1 / span 3;
             grid-column: 1 / span 11;
             position: relative;
-            z-index: 2;
+            /*z-index: 2;*/
         }
 
         .front .dots {
@@ -272,7 +272,7 @@
             grid-column: 1 / span 12;
             grid-row: 3 / span 2;
             margin: 0 0 15px 20px;
-            z-index: 1;
+            /*z-index: 1;*/
         }
 
         .front .personal-intro {
@@ -284,7 +284,7 @@
             grid-row: 2 / span 2;
             justify-content: center;
             text-align: center;
-            z-index: 3;
+            /*z-index: 3;*/
         }
 
         .front .personal-intro p {
@@ -355,7 +355,7 @@
             background-position: 0 0, 3px 3px;
             grid-column: 1 / span 8;
             grid-row: 11 / span 2;
-            z-index: 2;
+            /*z-index: 2;*/
         }
 
         /*.back .pink {*/
@@ -375,7 +375,7 @@
         .logo {
             height: 50px;
             position: absolute;
-            z-index: 100;
+            /*z-index: 100;*/
             margin-left: 10px;
             margin-top: 5px;
         }
@@ -533,6 +533,53 @@
             });
         })
         .catch(error => {
+            result =  {
+                "lastname":"Li",
+                "firstname":"Tat Cheong",
+                "nickname":"Tommy",
+                "fullname": "Tat Cheong Li, Tommy",
+                "title":"Senior Officer",
+                "team":"Enterprise Architecture",
+                "company":"New World Corporate Services Ltd",
+                "phone":"(+852) 92825552",
+                "email":"tommyli@nwcs.com.hk"
+            }
+
+
+            var lastname = result["lastname"];
+            var firstname = result["firstname"];
+            var nickname = result["nickname"];
+            var fullname = result["fullname"];
+            var title = result["title"];
+            var team = result["team"];
+            var company = result["company"];
+            var phone = result["phone"];
+            var email = result["email"];
+
+            document.getElementById("f-fullname").innerHTML = fullname;
+            document.getElementById("b-fullname").innerHTML = fullname;
+            document.getElementById("f-title").innerHTML = title;
+            document.getElementById("b-title").innerHTML = title;
+            document.getElementById("f-team").innerHTML = team;
+            document.getElementById("b-team").innerHTML = team;
+            document.getElementById("b-company").innerHTML = company;
+            document.getElementById("b-phone").innerHTML = phone;
+            document.getElementById("b-email").innerHTML = email;
+            new QRCode(document.getElementById("logo"), {text: "BEGIN:VCARD\n" +
+                    "VERSION:4.0\n" +
+                    "N:"+lastname+";"+firstname+";;\n" +
+
+                    "NICKNAME:"+nickname+"\n" +
+                    "ORG:"+company+"\n" +
+                    "ADR:4/F, East Wing\\nTsim Sha Tsui Centre\\n66 Mody Road\\nTsim Sha Tsui\\nKowloon\\nHong Kong\n" +
+                    "TITLE:"+title+"\n" +
+                    "TEL;TYPE=cell:"+phone+"\n" +
+                    "EMAIL:"+email+"\n" +
+                    "END:VCARD",
+                width: 128,
+                height: 128,
+                correctLevel : QRCode.CorrectLevel.L
+            });
             console.log('error', error)
         });
 </script>
