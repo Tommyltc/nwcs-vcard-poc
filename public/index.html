@@ -168,168 +168,235 @@
             margin-block-start: 0.5em;
             margin-block-end: 0.5em;
         }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+        }
+
+        .flip-card {
+            /*background-color: transparent;*/
+            /*width: 300px;*/
+            /*height: 200px;*/
+            /*border: 1px solid #f1f1f1;*/
+            /*perspective: 1000px; !* Remove this if you don't want the 3D effect *!*/
+            perspective: 1000px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* This container is needed to position the front and back side */
+        .flip-card-inner {
+            /*position: relative;*/
+            /*width: 100%;*/
+            /*height: 100%;*/
+            /*text-align: center;*/
+            /*transition: transform 0.8s;*/
+            /*transform-style: preserve-3d;*/
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            height: 25vh;
+            width: 85vw;
+            margin: 3em auto;
+        }
+
+        /* Do an horizontal flip when you move the mouse over the flip box container */
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Position the front and back side */
+        .flip-card-front, .flip-card-back {
+            /*width: 100%;*/
+            /*height: 100%;*/
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            background-color: white;
+        }
+
+        /* Style the front side (fallback if image is missing) */
+        .flip-card-front {
+            color: black;
+        }
+
+        /* Style the back side */
+        .flip-card-back {
+            /*background-color: dodgerblue;*/
+            /*color: white;*/
+            transform: rotateY(180deg);
+        }
     }
 
-        @media screen and (min-width: 1024px) {
-            .card {
-                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-                display: grid;
-                font-family: 'Trebuchet MS', sans-serif;
-                height: 200px;
-                margin: 20px auto;
-                width: 350px;
-            }
-
-            .front {
-                grid-template-columns: repeat(12, 1fr);
-                grid-template-rows: repeat(4, 1fr);
-            }
-
-            .front .blue {
-                background-color: #6bb59e;
-                grid-column: 8 / span 5;
-                grid-row: 1 / span 4;
-            }
-
-            .front .yellow {
-                background-color: #273b3c;
-                grid-column: 1 / span 7;
-                grid-row: 1 / span 4;
-            }
-
-            .front .pink {
-                background-color: white;
-                clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
-                grid-row: 1 / span 3;
-                grid-column: 1 / span 11;
-                position: relative;
-                z-index: 2;
-            }
-
-            .front .dots {
-                background: radial-gradient(#ffffff 20%, transparent 19%), radial-gradient(#ffffff 20%, transparent 19%), transparent;
-                background-size: 6px 6px;
-                background-position: 0 0, 3px 3px;
-                grid-column: 1 / span 12;
-                grid-row: 3 / span 2;
-                margin: 0 0 15px 20px;
-                z-index: 1;
-            }
-
-            .front .personal-intro {
-                background: white;
-                color: #6bb59e;
-                display: flex;
-                flex-direction: column;
-                grid-column: 4 / span 6;
-                grid-row: 2 / span 2;
-                justify-content: center;
-                text-align: center;
-                z-index: 3;
-            }
-
-            .front .personal-intro p {
-                letter-spacing: 1px;
-                text-transform: uppercase;
-            }
-
-            .front .personal-intro p:first-of-type {
-                font-size: 18px;
-            }
-
-            .front .personal-intro p:last-of-type {
-                font-size: 8px;
-                margin-top: 5px;
-            }
-
-            .back {
-                grid-template-columns: repeat(12, 1fr);
-                grid-template-rows: repeat(12, 1fr);
-            }
-
-            .back .yellow {
-                background-color: #6bb59e;
-                grid-column: 1 / span 9;
-                grid-row: 1 / span 3;
-            }
-
-            .back .top.dots {
-                background: radial-gradient(#273b3c 20%, transparent 19%), radial-gradient(#273b3c 20%, transparent 19%), transparent;
-                background-size: 6px 6px;
-                background-position: 0 0, 3px 3px;
-                grid-column: 8 / span 6;
-                grid-row: 2 / span 2;
-            }
-
-            .back .personal-info {
-                grid-column: 2 / span 6;
-                grid-row: 5 / span 6;
-            }
-
-            .back .personal-info p {
-                font-size: 10px;
-            }
-
-            .back .personal-info div {
-                font-size: 10px;
-            }
-
-            .back .personal-info div:first-child {
-                font-size: 18px;
-            }
-
-            .back .personal-info p:first-of-type {
-                font-size: 18px;
-                font-weight: bold;
-                letter-spacing: 1px;
-                text-transform: uppercase;
-            }
-
-            .back .personal-info p:nth-of-type(2) {
-                font-size: 12px;
-                margin-bottom: 15px;
-            }
-
-            .back .bottom.dots {
-                background: radial-gradient(#273b3c 20%, transparent 19%), radial-gradient(#273b3c 20%, transparent 19%), transparent;
-                background-size: 6px 6px;
-                background-position: 0 0, 3px 3px;
-                grid-column: 1 / span 8;
-                grid-row: 11 / span 2;
-                z-index: 2;
-            }
-
-            /*.back .pink {*/
-            /*    background-color: #ec7265;*/
-            /*    grid-column: 8 / span 5;*/
-            /*    grid-row: 11 / span 2;*/
-            /*}*/
-            .qr-code {
-                grid-column: 9/span 4;
-                grid-row: 4/span 7;
-            }
-
-            .qr-code img {
-                width: 100%;
-            }
-
-            .logo {
-                height: 50px;
-                position: absolute;
-                z-index: 100;
-                margin-left: 10px;
-                margin-top: 5px;
-            }
-
-            .logo img {
-                height: 100%;
-            }
-
-            .front .personal-intro p {
-                margin-block-start: 0.5em;
-                margin-block-end: 0.5em;
-            }
+    @media screen and (min-width: 1024px) {
+        .flip-card-front, .flip-card-back {
+            position: initial;
         }
+
+        .card {
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            display: grid;
+            font-family: 'Trebuchet MS', sans-serif;
+            height: 200px;
+            margin: 20px auto;
+            width: 350px;
+        }
+
+        .front {
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+        }
+
+        .front .blue {
+            background-color: #6bb59e;
+            grid-column: 8 / span 5;
+            grid-row: 1 / span 4;
+        }
+
+        .front .yellow {
+            background-color: #273b3c;
+            grid-column: 1 / span 7;
+            grid-row: 1 / span 4;
+        }
+
+        .front .pink {
+            background-color: white;
+            clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+            grid-row: 1 / span 3;
+            grid-column: 1 / span 11;
+            position: relative;
+            z-index: 2;
+        }
+
+        .front .dots {
+            background: radial-gradient(#ffffff 20%, transparent 19%), radial-gradient(#ffffff 20%, transparent 19%), transparent;
+            background-size: 6px 6px;
+            background-position: 0 0, 3px 3px;
+            grid-column: 1 / span 12;
+            grid-row: 3 / span 2;
+            margin: 0 0 15px 20px;
+            z-index: 1;
+        }
+
+        .front .personal-intro {
+            background: white;
+            color: #6bb59e;
+            display: flex;
+            flex-direction: column;
+            grid-column: 4 / span 6;
+            grid-row: 2 / span 2;
+            justify-content: center;
+            text-align: center;
+            z-index: 3;
+        }
+
+        .front .personal-intro p {
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .front .personal-intro p:first-of-type {
+            font-size: 18px;
+        }
+
+        .front .personal-intro p:last-of-type {
+            font-size: 8px;
+            margin-top: 5px;
+        }
+
+        .back {
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(12, 1fr);
+        }
+
+        .back .yellow {
+            background-color: #6bb59e;
+            grid-column: 1 / span 9;
+            grid-row: 1 / span 3;
+        }
+
+        .back .top.dots {
+            background: radial-gradient(#273b3c 20%, transparent 19%), radial-gradient(#273b3c 20%, transparent 19%), transparent;
+            background-size: 6px 6px;
+            background-position: 0 0, 3px 3px;
+            grid-column: 8 / span 6;
+            grid-row: 2 / span 2;
+        }
+
+        .back .personal-info {
+            grid-column: 2 / span 6;
+            grid-row: 5 / span 6;
+        }
+
+        .back .personal-info p {
+            font-size: 10px;
+        }
+
+        .back .personal-info div {
+            font-size: 10px;
+        }
+
+        .back .personal-info div:first-child {
+            font-size: 18px;
+        }
+
+        .back .personal-info p:first-of-type {
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .back .personal-info p:nth-of-type(2) {
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .back .bottom.dots {
+            background: radial-gradient(#273b3c 20%, transparent 19%), radial-gradient(#273b3c 20%, transparent 19%), transparent;
+            background-size: 6px 6px;
+            background-position: 0 0, 3px 3px;
+            grid-column: 1 / span 8;
+            grid-row: 11 / span 2;
+            z-index: 2;
+        }
+
+        /*.back .pink {*/
+        /*    background-color: #ec7265;*/
+        /*    grid-column: 8 / span 5;*/
+        /*    grid-row: 11 / span 2;*/
+        /*}*/
+        .qr-code {
+            grid-column: 9/span 4;
+            grid-row: 4/span 7;
+        }
+
+        .qr-code img {
+            width: 100%;
+        }
+
+        .logo {
+            height: 50px;
+            position: absolute;
+            z-index: 100;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+
+        .logo img {
+            height: 100%;
+        }
+
+        .front .personal-intro p {
+            margin-block-start: 0.5em;
+            margin-block-end: 0.5em;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: initial;
+        }
+        .flip-card-back {
+            /*background-color: dodgerblue;*/
+            /*color: white;*/
+            transform: initial;
+        }
+    }
     /*.card[hidden=true] {*/
     /*    !*transition: transform 0.8s;*!*/
     /*    !*transform-style: preserve-3d;*!*/
@@ -355,60 +422,9 @@
     /*    -webkit-backface-visibility: hidden; !* Safari *!*/
     /*    backface-visibility: hidden;*/
     /*}*/
-
     /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
-    .flip-card {
-        /*background-color: transparent;*/
-        /*width: 300px;*/
-        /*height: 200px;*/
-        /*border: 1px solid #f1f1f1;*/
-        /*perspective: 1000px; !* Remove this if you don't want the 3D effect *!*/
-        perspective: 1000px;
-        display: inline-block;
-        width: 100%;
-    }
 
-    /* This container is needed to position the front and back side */
-    .flip-card-inner {
-        /*position: relative;*/
-        /*width: 100%;*/
-        /*height: 100%;*/
-        /*text-align: center;*/
-        /*transition: transform 0.8s;*/
-        /*transform-style: preserve-3d;*/
-        transition: transform 0.8s;
-        transform-style: preserve-3d;
-        height: 25vh;
-        width: 85vw;
-        margin: 3em auto;
-    }
 
-    /* Do an horizontal flip when you move the mouse over the flip box container */
-    .flip-card:hover .flip-card-inner {
-        transform: rotateY(180deg);
-    }
-
-    /* Position the front and back side */
-    .flip-card-front, .flip-card-back {
-        position: absolute;
-        /*width: 100%;*/
-        /*height: 100%;*/
-        -webkit-backface-visibility: hidden; /* Safari */
-        backface-visibility: hidden;
-    }
-
-    /* Style the front side (fallback if image is missing) */
-    .flip-card-front {
-        /*background-color: #bbb;*/
-        color: black;
-    }
-
-    /* Style the back side */
-    .flip-card-back {
-        /*background-color: dodgerblue;*/
-        /*color: white;*/
-        transform: rotateY(180deg);
-    }
 
 </style>
 <div class="flip-card" flip="false">
@@ -516,7 +532,9 @@
                 correctLevel : QRCode.CorrectLevel.L
             });
         })
-        .catch(error => console.log('error', error));
+        .catch(error => {
+            console.log('error', error)
+        });
 </script>
 </body>
 </html>
